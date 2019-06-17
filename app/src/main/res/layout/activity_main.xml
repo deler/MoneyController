@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="progressViewModel"
+                type="my.deler.moneycontroller.ui.viewmodel.ProgressViewModel"/>
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.main.MainActivity"
+            android:id="@+id/frameLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                tools:context=".ui.main.MainActivity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                    style="@style/DefaultToolbar"
+                    android:id="@+id/toolbar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <fragment
+                    android:id="@+id/nav_host_fragment"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:defaultNavHost="true"
+                    app:navGraph="@navigation/nav_main"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{progressViewModel.isLoading}"
+                android:background="#AFFF"
+                tools:visibility="gone">
+
+            <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+
+                <ProgressBar
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progressBar"
+                        android:layout_margin="16dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{progressViewModel.loadingText}"
+                        android:visibility="@{progressViewModel.loadingText != null}"
+                        android:layout_margin="16dp"/>
+            </LinearLayout>
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>

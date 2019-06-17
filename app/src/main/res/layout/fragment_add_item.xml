@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <import type="my.deler.moneycontroller.ui.main.additem.AddItemType"/>
+
+        <variable
+                name="fragment"
+                type="my.deler.moneycontroller.ui.main.additem.AddItemFragment"/>
+
+        <variable
+                name="viewModel"
+                type="my.deler.moneycontroller.ui.viewmodel.AddItemViewModel"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_height="match_parent">
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/addButton">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/amountText"
+                            android:text="@={viewModel.amount}"
+                            android:layout_width="match_parent"
+                            android:inputType="numberDecimal"
+                            android:selectAllOnFocus="true"
+                            android:hint="@string/fai_amount"
+                            android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:focusable="false"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dateEditText"
+                            android:text="@={viewModel.dateString}"
+                            android:layout_width="match_parent"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:hint="@string/fai_date"
+                            android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <org.angmarch.views.NiceSpinner
+                        android:id="@+id/whoSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"/>
+
+                <org.angmarch.views.NiceSpinner
+                        android:id="@+id/incomingSpinner"
+                        android:visibility="@{viewModel.type==AddItemType.INCOMING}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"/>
+
+                <org.angmarch.views.NiceSpinner
+                        android:id="@+id/expenseSpinner"
+                        android:visibility="@{viewModel.type==AddItemType.EXPENSE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:text="@={viewModel.comment}"
+                            android:layout_width="match_parent"
+                            android:hint="@string/fai_comment"
+                            android:layout_height="wrap_content"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <Button
+                android:id="@+id/addButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fai_add"
+                android:clickable="@{viewModel.progressViewModel.isLoading ? false : true}"
+                android:onClick="@{view->viewModel.addClicked()}"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

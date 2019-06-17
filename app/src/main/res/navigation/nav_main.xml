@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_main"
+            app:startDestination="@id/mainFragment">
+
+    <fragment
+            android:id="@+id/mainFragment"
+            android:name="my.deler.moneycontroller.ui.main.MainFragment"
+            tools:layout="@layout/fragment_main"
+            android:label="MainFragment">
+        <action
+                android:id="@+id/action_mainFragment_to_addIncomingExpenseFragment"
+                app:destination="@id/addItemFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/addItemFragment"
+            tools:layout="@layout/fragment_add_item"
+            android:name="my.deler.moneycontroller.ui.main.additem.AddItemFragment"
+            android:label="AddItemFragment">
+        <argument
+                android:name="type"
+                app:argType="my.deler.moneycontroller.ui.main.additem.AddItemType"
+                android:defaultValue="EXPENSE"/>
+    </fragment>
+
+</navigation>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MoneyController</string>
+
+    <string name="fm_add_expense">Add Expense</string>
+    <string name="fm_add_incoming">Add Incoming</string>
+    <string name="fm_select_file">Select File</string>
+
+    <string name="fai_add">Add</string>
+    <string name="fai_amount">Amount</string>
+    <string name="fai_date">Date</string>
+    <string name="fai_who">Who</string>
+    <string name="fai_incoming_category">Incoming Category</string>
+    <string name="fai_expense_category">Expense category</string>
+    <string name="fai_comment">Comment</string>
+</resources>
