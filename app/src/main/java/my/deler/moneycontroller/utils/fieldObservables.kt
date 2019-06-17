@@ -47,7 +47,7 @@ class ObservableCategoryItemEntity(entity: CategoryItemEntity) : ObservableField
     }
 }
 
-fun <T> ObservableField<T>.toObservable(): Observable<T> {
+fun <T> ObservableField<T>.observable(): Observable<T> {
     val field = this
     return Observable.create { emitter ->
         field.get()?.let { emitter.onNext(it) }
@@ -65,7 +65,7 @@ fun <T> ObservableField<T>.toObservable(): Observable<T> {
     }
 }
 
-fun <T> ObservableList<T>.toObservable(): Observable<List<T>> {
+fun <T> ObservableList<T>.observable(): Observable<List<T>> {
     val field = this
     return Observable.create { emitter ->
         if (field.isNotEmpty()) emitter.onNext(field)

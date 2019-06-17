@@ -28,7 +28,7 @@ import my.deler.moneycontroller.ui.viewmodel.AddItemViewModel
 import my.deler.moneycontroller.ui.viewmodel.ViewModelFactory
 import my.deler.moneycontroller.utils.AutoDisposable
 import my.deler.moneycontroller.utils.ObservableCategoryItemEntity
-import my.deler.moneycontroller.utils.toObservable
+import my.deler.moneycontroller.utils.observable
 import org.angmarch.views.NiceSpinner
 import org.angmarch.views.OnSpinnerItemSelectedListener
 import java.util.regex.Pattern
@@ -162,7 +162,7 @@ class AddItemFragment : BaseFragment() {
             }
         }
 
-        categories?.toObservable()?.subscribe { list ->
+        categories?.observable()?.subscribe { list ->
             val item = category?.get()
             if (list?.isNotEmpty() == true && item != null) {
                 list.apply {
@@ -179,7 +179,7 @@ class AddItemFragment : BaseFragment() {
             }
         }?.also { subscriptions.add(it) }
 
-        category?.toObservable()?.subscribe {
+        category?.observable()?.subscribe {
             val item = it
             if (categories?.isNotEmpty() == true) {
                 categories.apply {

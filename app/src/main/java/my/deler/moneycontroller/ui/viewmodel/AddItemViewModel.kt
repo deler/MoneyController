@@ -49,7 +49,7 @@ class AddItemViewModel(progressViewModel: ProgressViewModel) : MainViewModel(pro
     init {
         DI.component.inject(this)
         getCategories()
-        date.toObservable().subscribe {
+        date.observable().subscribe {
             dateString.set(it.format())
         }.also { addDisposable(it) }
     }
