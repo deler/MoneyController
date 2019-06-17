@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.text.SpannableString
 import android.text.Spanned
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +15,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.toObservable
-import io.reactivex.schedulers.Schedulers
 import my.deler.moneycontroller.R
 import my.deler.moneycontroller.databinding.FragmentAddItemBinding
 import my.deler.moneycontroller.entity.entities.CategoryItemEntity
@@ -101,46 +96,11 @@ class AddItemFragment : BaseFragment() {
         }
     }
 
-    fun onFieldClick(field: Int) {
-        when (field) {
-            1 -> {
-            }
-            2 -> {
-            }
-            3 -> {
-            }
-            4 -> {
-            }
-            5 -> {
-            }
-            6 -> {
-            }
-        }
-    }
-
-    private fun request(i: Int) = i.toString()
-
     private fun setupSpinner(
         spinner: NiceSpinner,
         categories: ObservableList<CategoryItemEntity>?,
         category: ObservableCategoryItemEntity?
     ) {
-
-        val list1= listOf("123", "321")
-        list1.toObservable()
-            .map { it.toInt() }
-            .distinct()
-            .flatMap {
-                Observable.fromCallable { request(it) }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-            }
-            .toList()
-            .subscribe({
-                Log.d(TAG, it.toString())
-            }, {})
-            .also { subscriptions.add(it) }
-
         val formatter = formatter@{ it: Any? ->
             var str = SpannableString("")
             if (it is CategoryItemEntity) {

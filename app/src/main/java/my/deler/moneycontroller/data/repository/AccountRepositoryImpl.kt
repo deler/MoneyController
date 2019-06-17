@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 class AccountRepositoryImpl @Inject constructor(): AccountRepository {
-    override lateinit var account: Account
+    override var account = Account("empty", "none")
 }

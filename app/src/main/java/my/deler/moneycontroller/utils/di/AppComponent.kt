@@ -1,13 +1,12 @@
 package my.deler.moneycontroller.utils.di
 
 import android.content.Context
-import dagger.Binds
+import dagger.BindsInstance
 import dagger.Component
 import my.deler.moneycontroller.data.repository.AccountRepository
+import my.deler.moneycontroller.ui.viewmodel.AddItemViewModel
 import my.deler.moneycontroller.ui.viewmodel.MainViewModel
 import javax.inject.Singleton
-import dagger.BindsInstance
-import my.deler.moneycontroller.ui.viewmodel.AddItemViewModel
 
 
 @Singleton
